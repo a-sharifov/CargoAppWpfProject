@@ -1,0 +1,164 @@
+﻿<UserControl x:Class="WpfApp6.View.UserMainWindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp6.View"
+             xmlns:vm ="clr-namespace:WpfApp6.ViewModel" 
+             xmlns:sv ="clr-namespace:WpfApp6.Service.Classes" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:ev ="http://schemas.microsoft.com/xaml/behaviors"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d"
+             Height="820" Width="420"
+             Background="Transparent"
+             d:DataContext="{d:DesignInstance vm:UserMainViewModel }">
+
+    <UserControl.Resources>
+        <sv:BitmapimageConverterService x:Key="UriToImageConverter"/>
+    </UserControl.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="12*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Command="{Binding ClickSethings}" HorizontalAlignment="Left" materialDesign:ButtonAssist.CornerRadius="13" Margin ="0,0,0,15">
+                <materialDesign:PackIcon Kind = "Gear"/>
+            </Button>
+            <Button Grid.Column="1" Command="{Binding ClickAddDecleration}" HorizontalAlignment="Center" materialDesign:ButtonAssist.CornerRadius="13" Margin ="0,0,0,15">
+                <materialDesign:PackIcon Kind = "PackageVariantPlus"/>
+            </Button>
+            <Button Grid.Column="2" Command="{Binding ClickExit}" HorizontalAlignment="Right" materialDesign:ButtonAssist.CornerRadius="13" Margin ="0,0,0,15">
+                <materialDesign:PackIcon Kind = "ExitToApp"/>
+            </Button>
+        </Grid>
+
+        <TabControl Grid.Row="1" Margin="0 40 0 0">
+            <TabItem Header="Packages">
+                <ListBox
+                ScrollViewer.CanContentScroll="False"
+                Margin="20"
+                Grid.Row="1" 
+                DockPanel.Dock="Bottom"
+                ItemsSource="{Binding UserlistStatus.UserPackages}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel Width="500px">
+                                <StackPanel DockPanel.Dock="Left">
+                                    <Label Content="Tracking number: "/>
+                                    <Label Content="Invoice price: "/>
+                                    <Label Content="Ware house: "/>
+                                    <Label Content="Site name: "/>
+                                    <Label Content="Product category: "/>
+                                    <Label Content="Quantity: "/>
+                                    <Label Content="Note: "/>
+                                    <Label Content="Status: "/>
+                                    <Image Height="200px" Width="200px" Source="{Binding ProductImage ,Converter={StaticResource UriToImageConverter}}"/>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Top">
+                                    <Label Content="{Binding TrackingNumber}"/>
+                                    <Label Content="{Binding SiteName}"/>
+                                    <Label Content="{Binding WareHouse}"/>
+                                    <Label Content="{Binding InvoicePrice}"/>
+                                    <Label Content="{Binding ProductCategory}"/>
+                                    <Label Content="{Binding Quantity}"/>
+                                    <Label Content="{Binding Note}"/>
+                                    <Label Content="{Binding Status}"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem Header="Orders">
+                <ListBox
+                ScrollViewer.CanContentScroll="False"
+                Margin="20"
+                Grid.Row="1" 
+                DockPanel.Dock="Bottom"
+                ItemsSource="{Binding UserlistStatus.UserOrders}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel Width="500px">
+                                <StackPanel DockPanel.Dock="Left">
+                                    <Label Content="Tracking number: "/>
+                                    <Label Content="Invoice price: "/>
+                                    <Label Content="Ware house: "/>
+                                    <Label Content="Site name: "/>
+                                    <Label Content="Product category: "/>
+                                    <Label Content="Quantity: "/>
+                                    <Label Content="Note: "/>
+                                    <Label Content="Status: "/>
+                                    <Image Height="200px" Width="200px" Source="{Binding ProductImage ,Converter={StaticResource UriToImageConverter}}"/>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Top">
+                                    <Label Content="{Binding TrackingNumber}"/>
+                                    <Label Content="{Binding SiteName}"/>
+                                    <Label Content="{Binding WareHouse}"/>
+                                    <Label Content="{Binding InvoicePrice}"/>
+                                    <Label Content="{Binding ProductCategory}"/>
+                                    <Label Content="{Binding Quantity}"/>
+                                    <Label Content="{Binding Note}"/>
+                                    <Label Content="{Binding Status}"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem Header="In Filial">
+                <ListBox
+                ScrollViewer.CanContentScroll="False"
+                Margin="20"
+                Grid.Row="1" 
+                DockPanel.Dock="Bottom"
+                ItemsSource="{Binding UserlistStatus.UserInFillial}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel Width="500px">
+                                <StackPanel DockPanel.Dock="Left">
+                                    <Label Content="Tracking number: "/>
+                                    <Label Content="Invoice price: "/>
+                                    <Label Content="Ware house: "/>
+                                    <Label Content="Site name: "/>
+                                    <Label Content="Product category: "/>
+                                    <Label Content="Quantity: "/>
+                                    <Label Content="Note: "/>
+                                    <Label Content="Status: "/>
+                                    <Image Height="200px" Width="200px" Source="{Binding ProductImage ,Converter={StaticResource UriToImageConverter}}"/>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Top">
+                                    <Label Content="{Binding TrackingNumber}"/>
+                                    <Label Content="{Binding SiteName}"/>
+                                    <Label Content="{Binding WareHouse}"/>
+                                    <Label Content="{Binding InvoicePrice}"/>
+                                    <Label Content="{Binding ProductCategory}"/>
+                                    <Label Content="{Binding Quantity}"/>
+                                    <Label Content="{Binding Note}"/>
+                                    <Label Content="{Binding Status}"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+        </TabControl>
+        <TextBlock Grid.Row="2" Text="{Binding User.User.UserName}" HorizontalAlignment="Center" FontSize="16" ></TextBlock>
+    </Grid>
+
+</UserControl> 
