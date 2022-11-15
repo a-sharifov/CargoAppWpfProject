@@ -58,7 +58,7 @@
                 <TextBlock Text="FIN" FontSize="15"/>
                 <TextBox  Text="{Binding User.FIN}" Margin="0,10,30,50" MaxLength="10">
                     <bh:Interaction.Behaviors>
-                        <sv:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9.\-]+$" MaxLength="15"/>
+                        <sv:AllowableCharactersTextBoxBehavior RegularExpression="^[A-Za-z0-9]*$" MaxLength="15"/>
                     </bh:Interaction.Behaviors>
                 </TextBox>
 
