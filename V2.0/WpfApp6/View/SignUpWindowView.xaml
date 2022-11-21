@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="WpfApp6.View.SignUpWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm ="clr-namespace:WpfApp6.ViewModel" 
+        xmlns:sv ="clr-namespace:WpfApp6.Service.Classes"
+        xmlns:bh ="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Height="820" Width="420"
+        d:DataContext="{d:DesignInstance vm:SignUpViewModel }">
+    
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.09*"/>
+            <RowDefinition Height="0.14*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+            <Button Grid.Column="0" Command="{Binding MouseClickReturnButton}" HorizontalAlignment="Left"  materialDesign:ButtonAssist.CornerRadius="13" Margin="10,0,0,15">
+                <materialDesign:PackIcon Kind = "ArrowLeft"/>
+            </Button>
+
+            <TextBlock Grid.Row="1" Text="Sign Up"  VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Margin="15,10"/>
+        <ScrollViewer Margin="15 0 0 0" Grid.Row="2">
+            <StackPanel>
+                
+                <TextBlock Text="Username" FontSize="15"/>
+                <TextBox Text="{Binding User.UserName}" Margin="0,10,30,65" MaxLength="25"/>
+                
+                <TextBlock Text="Password"  FontSize="15"/>
+                <TextBox  Text ="{Binding User.Password}" Margin="0,10,30,65" MaxLength="16"/>
+
+                <TextBlock Text="Serial" FontSize="15"/>
+                <TextBox  Text="{Binding User.Serial}" Margin="0,10,30,65" MaxLength="10"/>
+                
+                <TextBlock Text="Address" FontSize="15" />
+                <TextBox  Text="{Binding User.Address}" Margin="0,10,30,65" MaxLength="25"/>
+                
+                <TextBlock Text="Phone" FontSize="15"/>
+                <TextBox  Text="{Binding User.Number}" Margin="0,10,30,65" MaxLength="20">
+                    <bh:Interaction.Behaviors>
+                        <sv:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9.\-]+$" MaxLength="15"/>
+                    </bh:Interaction.Behaviors>
+                </TextBox>
+
+                <TextBlock Text="FIN" FontSize="15"/>
+                <TextBox  Text="{Binding User.FIN}" Margin="0,10,30,50" MaxLength="10">
+                    <bh:Interaction.Behaviors>
+                        <sv:AllowableCharactersTextBoxBehavior RegularExpression="^[A-Za-z0-9]*$" MaxLength="15"/>
+                    </bh:Interaction.Behaviors>
+                </TextBox>
+
+                <Button Content="Register" Command="{Binding MouseClickRegisterButton}" materialDesign:ButtonAssist.CornerRadius="13" Margin="50,0,50,15"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

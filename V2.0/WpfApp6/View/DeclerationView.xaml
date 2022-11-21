@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="WpfApp6.View.DeclerationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm ="clr-namespace:WpfApp6.ViewModel"  
+             xmlns:sv ="clr-namespace:WpfApp6.Service.Classes"  
+             xmlns:bh ="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground= "{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Height="820" Width="420"
+             d:DataContext="{d:DesignInstance vm:DeclerationViewModel }">
+    
+        <UserControl.Resources>
+        <sv:BitmapimageConverterService x:Key="UriToImageConverter"/>
+    </UserControl.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.08*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="0" Command="{Binding ClickReturn}" HorizontalAlignment="Left"  materialDesign:ButtonAssist.CornerRadius="13" Margin="10,0,0,15">
+            <materialDesign:PackIcon Kind = "ArrowLeft"/>
+        </Button>
+        <ScrollViewer Margin="10 50" Grid.Row="2">
+            
+                <StackPanel Grid.Row="1">
+                <TextBlock Text="Product Photo" FontSize="15"/>
+
+                <DockPanel Height="200px">
+                    <Button DockPanel.Dock="Bottom" Command="{Binding ImageDownoload}" materialDesign:ButtonAssist.CornerRadius="13" Margin="50,0,50,15">
+                        <materialDesign:PackIcon Kind = "FileImage"/>
+                    </Button>
+                    <Image DockPanel.Dock="Right"  Source="{Binding ProductImage}" Margin="30" />
+                </DockPanel>
+
+                <TextBlock Text="WareHouse" FontSize="15"/>
+                <TextBox  Text="{Binding Decleration.WareHouse}" Margin="0,10,30,65" MaxLength="50"/>
+
+                <TextBlock Text="Site name" FontSize="15" />
+                <TextBox  Text="{Binding Decleration.SiteName}" Margin="0,10,30,65" MaxLength="50"/>
+
+                <TextBlock Text="Tracking number" FontSize="15"/>
+                <TextBox  Text="{Binding Decleration.TrackingNumber}" Margin="0,10,30,65" MaxLength="50"/>
+
+                <TextBlock Text="Product Category" FontSize="15"/>
+                <TextBox  Text="{Binding Decleration.ProductCategory}" Margin="0,10,30,65" MaxLength="50"/>
+
+                <TextBlock Text="Quantity" FontSize="15"/>
+                <TextBox  Text="{Binding Decleration.Quantity}" Margin="0,10,30,65" MaxLength="50"/>
+
+                <TextBlock Text="InvoicePrice" FontSize="15"/>
+                <TextBox  Text="{Binding Decleration.InvoicePrice}" Margin="0,10,30,65" MaxLength="15">
+                    <bh:Interaction.Behaviors>
+                        <sv:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9.\-]+$" MaxLength="15"/>
+                    </bh:Interaction.Behaviors>
+                </TextBox>
+
+                <TextBlock Text="Note" FontSize="15"/>
+                <TextBox  Text="{Binding Decleration.Note}" Margin="0,10,30,65" MaxLength="50"/>
+
+                <Button Content="Save" Command="{Binding ClickSave}" materialDesign:ButtonAssist.CornerRadius="13" Margin="50,0,50,15"/>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="WpfApp6.View.UserSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:vm ="clr-namespace:WpfApp6.ViewModel" 
+             xmlns:sv ="clr-namespace:WpfApp6.Service.Classes"
+             xmlns:bh ="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Height="820" Width="420"
+             Background="Transparent"
+             d:DataContext="{d:DesignInstance vm:UserSettingsViewModel }">
+ 
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="0" Command="{Binding SaveSettings}" HorizontalAlignment="Left"  materialDesign:ButtonAssist.CornerRadius="13" Margin="10,0,0,15">
+            <materialDesign:PackIcon Kind = "ArrowLeft"/>
+        </Button>
+
+        <StackPanel Grid.Row="1"  Margin="10 35">
+
+            <TextBlock Text="Serial" FontSize="15"/>
+            <TextBox  Text="{Binding User.User.Serial}" Margin="0,10,30,65" MaxLength="10"/>
+
+            <TextBlock Text="Address" FontSize="15" />
+            <TextBox  Text="{Binding User.User.Address}" Margin="0,10,30,65" MaxLength="25"/>
+
+            <TextBlock Text="FIN" FontSize="15"/>
+            <TextBox  Text="{Binding User.User.FIN}" Margin="0,10,30,50" MaxLength="10">
+                <bh:Interaction.Behaviors>
+                    <sv:AllowableCharactersTextBoxBehavior RegularExpression="^[A-Za-z0-9]*$" MaxLength="15"/>
+                </bh:Interaction.Behaviors>
+            </TextBox>
+
+            <TextBlock Text="Phone" FontSize="15"/>
+            <TextBox  Text="{Binding User.User.Number}" Margin="0,10,30,50" MaxLength="15">
+                <bh:Interaction.Behaviors>
+                    <sv:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9.\-]+$" MaxLength="15"/>
+                </bh:Interaction.Behaviors>
+            </TextBox>
+
+            <TextBlock Text="Password" FontSize="15"/>
+            <TextBox  Text="{Binding PasswordText}" Margin="0,10,30,50" MaxLength="16"/>
+
+            <Button Content="Save" Command="{Binding SaveSettings}" materialDesign:ButtonAssist.CornerRadius="13" Margin="50,40,50,40"/>
+        </StackPanel>
+    </Grid>
+
+</UserControl> 
